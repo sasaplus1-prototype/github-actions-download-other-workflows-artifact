@@ -35,3 +35,4 @@ jobs:
           # github-token: ${{ github.token }}
           run-id: ${{ steps.run-id.outputs.id }}
       - run: ls -l
+      - run: file *
