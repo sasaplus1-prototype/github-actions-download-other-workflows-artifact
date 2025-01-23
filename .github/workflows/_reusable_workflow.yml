@@ -1,0 +1,35 @@
+name: reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      commit:
+        description: 'target commit SHA'
+        required: true
+        type: string
+      workflow_name:
+        description: 'workflow name'
+        required: true
+        type: string
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - run: >
+          gh run list
+          --limit 1
+          --workflow '${{ inputs.workflow_name }}'
+          --commit ${{ inputs.commit }}
+          --json databaseId
+          --jq '.[0].databaseId' | tee run_id.txt
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - id: run-id
+        run: echo "id=$(cat run_id.txt)" | tee -a "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
+        with:
+          # NOTE: need token if download from other repository
+          # github-token: ${{ github.token }}
+          run-id: ${{ steps.run-id.outputs.id }}
+      - run: ls -l
