@@ -26,7 +26,7 @@ jobs:
           gh run list
           --limit 1
           --workflow '${{ inputs.workflow_name }}'
-          --commit ${{ inputs.commit }}
+          --commit '${{ inputs.commit }}'
           --json databaseId
           --jq '.[0].databaseId' | tee run_id.txt
         env:
