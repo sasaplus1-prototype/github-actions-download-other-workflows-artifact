@@ -12,6 +12,9 @@ on:
         required: true
         type: string
 
+env:
+  TZ: Asia/Tokyo
+
 jobs:
   download:
     runs-on: ubuntu-latest

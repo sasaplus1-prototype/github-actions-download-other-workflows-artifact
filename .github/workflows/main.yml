@@ -3,6 +3,9 @@ name: main workflow
 on:
   - push
 
+env:
+  TZ: Asia/Tokyo
+
 jobs:
   main:
     runs-on: ubuntu-latest
