@@ -16,4 +16,6 @@ jobs:
     needs: main
     uses: ./.github/workflows/_reusable_workflow.yml
     with:
+      commit: ${{ github.sha }}
+      workflow_name: 'main workflow'
     secrets: inherit
