@@ -27,8 +27,9 @@ jobs:
         run: echo "id=$(cat run_id.txt)" | tee -a "$GITHUB_OUTPUT"
       - uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
         with:
-          # NOTE: need token if download from other repository
-          # github-token: ${{ github.token }}
+          name: artifact
+          repository: ${{ github.repository }}
+          github-token: ${{ github.token }}
           run-id: ${{ steps.run-id.outputs.id }}
       - run: ls -lR
       - run: file *
