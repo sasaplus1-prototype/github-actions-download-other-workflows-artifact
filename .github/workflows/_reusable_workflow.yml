@@ -28,7 +28,8 @@ jobs:
           --workflow '${{ inputs.workflow_name }}'
           --commit '${{ inputs.commit }}'
           --json databaseId
-          --jq '.[0].databaseId' | tee run_id.txt
+          --jq '.[0].databaseId'
+          | tee run_id.txt
         env:
           GH_TOKEN: ${{ github.token }}
       - id: run-id
