@@ -33,4 +33,4 @@ jobs:
           run-id: ${{ steps.run-id.outputs.id }}
       - run: ls -lR
       - run: file *
-      - run: cat artifact/date.txt
+      - run: cat date.txt
